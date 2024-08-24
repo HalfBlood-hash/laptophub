@@ -1,0 +1,24 @@
+ul{
+    margin-right: 30px;
+}
+.arr{
+    margin-left: 30px;
+}
+li{
+    margin-left: 10px;
+   
+ 
+    margin-right: 10px;
+}
+nav{
+    /* position: sticky;  */
+   
+    top: 0;
+   
+    background-color: #bbb5b5;
+}
+.header-search
+{
+    border-radius: 30px;
+    width:200px
+}

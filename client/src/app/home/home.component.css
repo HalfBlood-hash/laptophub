@@ -1,0 +1,77 @@
+ 
+img{
+    max-width: 100%;
+    max-height: 100%;
+    align-items: center;
+}
+ 
+ 
+.hov1{
+    transition: transform 0.4s;
+}
+.hov1 :hover{
+    transform: scale(1.5);
+}
+ 
+ 
+/* Extra large screens */
+ 
+ 
+.image{
+    margin: 20px;
+    width: 200px ;
+    height: 100px;
+    padding-right: 40px;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+}
+.css-card{
+    /* background-color: brown; */
+    /* border: 2px solid black; */
+    margin-top:60px ;
+    margin-bottom: 30px;
+    /* column-gap: 10px; */
+    grid-gap: 10px
+    /* justify-content: space-between; */
+}
+.gap
+{
+    /* background-color: rgb(240, 241, 242); */
+    /* background-color: #bbb5b5; */
+    margin-left: 10px;
+    /* box-shadow: #bbb5b5 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -2px 5px; */
+    border:1px solid rgb(186, 186, 186);
+    cursor: pointer;
+    align-content:center ;
+    border-radius: 20px;
+    padding: 20px;
+ 
+}
+.title
+{
+    height: 60px;
+}
+.desc
+{
+ 
+    height: 70px;
+}
+.price{
+    font-size: large;
+    font-weight: 600;
+   
+}
+.delivery{
+    font-size: small;
+    color: rgb(240, 129, 129);
+    /* text-emphasis-color: red; */
+}
+ 
+ 
+.d-flex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

@@ -1,0 +1,62 @@
+
+
+<div class="container mt-3">
+<div class="input-group">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-3 css-card" *ngFor="let p of productdata | search:searchText;let x=index">
+                <div class="gap">
+                    <div class="image hov1">
+                        <img src="{{p.image}}" alt="" style="max-width: 150%; max-height: 150%;" (click)="onClick(p._id)">
+                    </div>
+                    <div class="title">
+                        <h5>{{p.display}}</h5>
+                    </div>
+                    <div class="price">
+                        {{p.price}}
+                    </div>
+                    <div class="desc" (click)="onClick(p._id)">
+                        {{p.des1}}
+                    </div>
+                    <div class="delivery">
+                            Delivered by {{p.deliveydate}}
+                    </div>
+                    @if(loginStatus)
+                    {
+                        @if(userloginType==='seller')
+                        {
+                            <a class="btn btn-outline-info mt-2 d-block" (click)="updateProduct(p)">
+                                Update
+                                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="15.75" viewBox="0 0 576 512" class="ml-2"><path fill="#B197FC" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                             
+                                </a>
+                                <a class="btn btn-outline-info mt-2 d-block" (click)="deleteProduct(p._id)" (click)="productdata.splice(x,1)">
+                                    Delete
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="15.75" viewBox="0 0 576 512" class="ml-2"><path fill="#B197FC" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                                 
+                                    </a>
+                        }
+                        @else {
+
+                            <a class="btn btn-outline-info mt-2 d-block" (click)="addtocart(p._id)">
+                                Add to Cart
+                                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="15.75" viewBox="0 0 576 512" class="ml-2"><path fill="#B197FC" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                             
+                                </a>
+                        }
+                    }
+                    @else {
+                        <a class="btn btn-outline-info mt-2 d-block" (click)="noLogin()">
+                            Add to Cart
+                            <svg xmlns="http://www.w3.org/2000/svg" height="14" width="15.75" viewBox="0 0 576 512" class="ml-2"><path fill="#B197FC" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                         
+                            </a>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

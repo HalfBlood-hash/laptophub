@@ -1,0 +1,136 @@
+<div class="container">
+    <div class="row">
+        <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+            <div class="panel border bg-white mt-5">
+                @if(editsatus)
+                {
+
+                <div class="panel-heading h3 mt-3">Update Product</div>
+                }
+                @else {
+                <div class="panel-heading h3 mt-3">Add Product</div>
+
+                }
+                <div class="panel-body p-3">
+                    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-book p-2"></span>
+                                <input formControlName="pid" type="number" id="pid" placeholder="Product ID" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-header p-2"></span>
+                                <input type="text" formControlName="display" placeholder="Product display name" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-file p-2"></span>
+                                <input formControlName="name" type="text" id="pname" placeholder="Product name" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-image p-2"></span>
+                                <input formControlName="price" type="number" id="pprice" placeholder="Prduct Price" />
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-info p-2"></span>
+                                <input formControlName="image" type="text" id="" placeholder="Product image url" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-user p-2"></span>
+                                <input formControlName="ram" type="text" id="ram" placeholder="Ram" />
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-list-alt p-2"></span>
+                                <input formControlName="rom" type="text" placeholder="Rom" />
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="processor" type="text" id="procecessor"
+                                    placeholder="procecessor" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="color" type="text" id="color" placeholder="color" />
+                            </div>
+                        </div>
+
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="des1" type="text" id="pdescription1"
+                                    placeholder="pdescription1" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="des2" type="text" id="pdescription2"
+                                    placeholder="pdescription2" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="des3" type="text" id="pdescription3"
+                                    placeholder="pdescription3" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="des4" type="text" id="pdescription4"
+                                    placeholder="pdescription4" />
+                            </div>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="input-field">
+                                <span class="fa fa-money p-2"></span>
+                                <input formControlName="des5" type="text" id="pdescription5"
+                                    placeholder="pdescription5" />
+                            </div>
+                        </div>
+
+                        @if(editsatus)
+                        {
+
+                        <button class="btn btn-dark text-white btn-block mt-4 w-100">
+                            Update Product
+                        </button>
+                        }
+                        @else {
+                        <button class="btn btn-dark text-white btn-block mt-4 w-100">
+                            Add Product
+                        </button>
+
+                        }
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

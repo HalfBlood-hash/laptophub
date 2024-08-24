@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <a class="navbar-brand arr" routerLink="home">
+      <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+        <path
+          d="M94.1 315.1c0 25.9-21.2 47.1-47.1 47.1S0 341 0 315.1c0-25.9 21.2-47.1 47.1-47.1h47.1v47.1zm23.7 0c0-25.9 21.2-47.1 47.1-47.1s47.1 21.2 47.1 47.1v117.8c0 25.9-21.2 47.1-47.1 47.1s-47.1-21.2-47.1-47.1V315.1zm47.1-189c-25.9 0-47.1-21.2-47.1-47.1S139 32 164.9 32s47.1 21.2 47.1 47.1v47.1H164.9zm0 23.7c25.9 0 47.1 21.2 47.1 47.1s-21.2 47.1-47.1 47.1H47.1C21.2 244 0 222.8 0 196.9s21.2-47.1 47.1-47.1H164.9zm189 47.1c0-25.9 21.2-47.1 47.1-47.1 25.9 0 47.1 21.2 47.1 47.1s-21.2 47.1-47.1 47.1h-47.1V196.9zm-23.7 0c0 25.9-21.2 47.1-47.1 47.1-25.9 0-47.1-21.2-47.1-47.1V79.1c0-25.9 21.2-47.1 47.1-47.1 25.9 0 47.1 21.2 47.1 47.1V196.9zM283.1 385.9c25.9 0 47.1 21.2 47.1 47.1 0 25.9-21.2 47.1-47.1 47.1-25.9 0-47.1-21.2-47.1-47.1v-47.1h47.1zm0-23.7c-25.9 0-47.1-21.2-47.1-47.1 0-25.9 21.2-47.1 47.1-47.1h117.8c25.9 0 47.1 21.2 47.1 47.1 0 25.9-21.2 47.1-47.1 47.1H283.1z" />
+      </svg>
+   
+      LaptopHub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <form #searchBox="ngForm">
+        <div class="header-search ms-3 d-flex align-items-center rounded" >
+          <input type="text" class="search-box p-1 rounded " [(ngModel)]="searchText" name="searchText" placeholder="Search product" (keyup)="searchProduct(searchText)" />
+        </div>
+     
+       
+      </form>
+      <ul class="navbar-nav ml-auto ">
+        @if(loginStatus())
+        {
+   
+          <li class="nav-item active">
+            <a class="nav-link text-danger" routerLink="home">Welcome {{loginUsername()}}<span class="sr-only">(current)</span></a>
+          </li>
+        }
+      </ul>
+      <ul class="navbar-nav ml-auto ">
+       
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        @if(loginStatus())
+        {
+
+        @if(loginUserType()==='seller')
+        {
+
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="addproduct" (click)="addproduct()">Add Product</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="orders" >Orders</a>
+          </li>
+        }
+        @else {
+
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="cart">Cart</a>
+          </li>
+        }
+       
+       
+        
+        <li class="nav-item active">
+          <a class="nav-link" (click)="onLogOut()" >Logout</a>
+        </li>
+      }
+      @else {
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="login">Login</a>
+        </li>
+        
+      }
+      
+      </ul>
+   
+    </div>
+  </nav>
