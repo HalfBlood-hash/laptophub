@@ -31,3 +31,6 @@
     opacity: 1;
     border-radius: 10px;
   }
+  .hover-thing{
+    cursor: pointer;
+  }

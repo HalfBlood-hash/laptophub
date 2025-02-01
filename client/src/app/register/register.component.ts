@@ -17,10 +17,10 @@ export class RegisterComponent {
    loginerrorrsatuts
  
  
-  rediect()
-    {
-      this.router.navigate(['/login'])
-    }
+   rediect()
+   {
+     this.router.navigate(['/login'])
+   }
    
     registrationform=new FormGroup({
     username:new FormControl('',[Validators.minLength(4),Validators.required]),
@@ -55,15 +55,15 @@ export class RegisterComponent {
       this.apicallServices.createUser(this.registrationform.value).subscribe(
         {
           next:(res)=>{
-            console.log(res)
-            if(res.message==='user is resgited')
+            
+            if(res.success)
             {
-              console.log("user ")
-              this.router.navigate(['login'])
+              this.signalService.registerEmail.set(this.registrationform.value.email)
+              this.router.navigate(['otpverification'])
             }
             else
             {
-              console.log("ofodsa")
+             
               this.loginerrormessage=res.message
              
               this.loginerrorrsatuts=true

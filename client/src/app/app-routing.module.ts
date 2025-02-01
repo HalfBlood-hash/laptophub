@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
 import { BillsComponent } from './bills/bills.component';
+import { OtpComponent } from './otp/otp.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'bills',component:BillsComponent},
+  {path:'otpverification',component:OtpComponent},
   {path:'product/:id',component:ProductComponent},
   {path:'',redirectTo:'home',pathMatch:'full'},
 ];

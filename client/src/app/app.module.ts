@@ -16,6 +16,7 @@ import { ProductComponent } from './product/product.component';
 import { BillsComponent } from './bills/bills.component';
 import { SearchPipe } from './search.pipe';
 import { NgToastModule } from 'ng-angular-popup';
+import { OtpComponent } from './otp/otp.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NgToastModule } from 'ng-angular-popup';
     ProductComponent,
     BillsComponent,
     SearchPipe,
+    OtpComponent,
     
   ],
   imports: [

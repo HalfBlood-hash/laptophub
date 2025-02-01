@@ -7,77 +7,77 @@ import { SignalService } from './signal.service';
   providedIn: 'root'
 })
 export class ApiCallService {
+  private url = 'http://localhost:4000';
+  private signal = inject(SignalService);
+  private httpClient = inject(HttpClient);
 
-  constructor() { }
-  signal=inject(SignalService)
-  httpClient=inject(HttpClient)
- 
-  createUser(user:any):Observable<any>
-  {
-    return this.httpClient.post('http://localhost:4000/user-api/registeruser',user)
-  }
+  constructor() {}
 
-  userLogin(user:any):Observable<any>
-  {
-    return this.httpClient.post('http://localhost:4000/user-api/login',user)
+  createUser(user: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/user-api/registeruser`, user);
   }
 
-  adminLogin(user:any):Observable<any>
-  {
-    return this.httpClient.post('http://localhost:4000/seller-api/login',user)
+  verifyEmail(code: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/user-api/verifyemail`, code);
+  }
+  resendOtp(email:any):Observable<any>{
+    console.log(email)
+    return this.httpClient.post(`${this.url}/user-api/resend`,{email:email})
+  }
+  userLogin(user: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/user-api/login`, user);
   }
 
-  addtocart(id:any):Observable<any>
-  {
-    return this.httpClient.post(`http://localhost:4000/user-api/addtocart/${this.signal.loginUsername()}`,{abc:id})
-    // return this.httpClient.post(`http://localhost:4000/user-api/addtocart/satyam`,{abc:id})
-  }
-  getcartProduct():Observable<any>
-  {
-    return this.httpClient.get(`http://localhost:4000/user-api/cartview/${this.signal.loginUsername()}`)
-  }
-  // ye wale se bana hai
-  removefromCart(id:any):Observable<any>
-  {
-    console.log(this.signal.loginUsername(),id)
-    return this.httpClient.post(`http://localhost:4000/user-api/deletecart/${this.signal.loginUsername()}`,{abc:id})
-  }
-  getProduct():Observable<any>
-  {
-    return this.httpClient.get('http://localhost:4000/product-api/getproduct')
-  }
-  addproduct(data:any)
-  {
-    return this.httpClient.post(`http://localhost:4000/product-api/addproduct`,data)
-  }
-  updateProduct(id:any,data)
-  {
-    
-    return this.httpClient.put(`http://localhost:4000/product-api/updateproduct/${id}`,data)
-  }
-  deleteProduct(id:any)
-  {
-    return this.httpClient.delete(`http://localhost:4000/product-api/deleteproduct/${id}`)
+  adminLogin(user: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/seller-api/login`, user);
   }
 
-
-  sendOrders(OrdersData): Observable<any> {
-    console.log('this is orderdata from send order function',OrdersData)
-    return this.httpClient.post(`http://localhost:4000/order-api/orders`,OrdersData);
-  }
-  ordersent(id): Observable<any> {
-    console.log('this is orderdata from send order function',id)
-    return this.httpClient.delete(`http://localhost:4000/order-api/orders/${id}`);
+  addtocart(id: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/user-api/addtocart/${this.signal.loginUsername()}`, { abc: id });
   }
 
-  getOrders()
-  {
-    return this.httpClient.get('http://localhost:4000/order-api/orders')
+  getcartProduct(): Observable<any> {
+    return this.httpClient.get(`${this.url}/user-api/cartview/${this.signal.loginUsername()}`);
   }
 
+  removefromCart(id: any): Observable<any> {
+    console.log(this.signal.loginUsername(), id);
+    return this.httpClient.post(`${this.url}/user-api/deletecart/${this.signal.loginUsername()}`, { abc: id });
+  }
 
-  searchText:any=''
-  searchSubject=new Subject()
+  getProduct(): Observable<any> {
+    return this.httpClient.get(`${this.url}/product-api/getproduct`);
+  }
+
+  addproduct(data: any): Observable<any> {
+    return this.httpClient.post(`${this.url}/product-api/addproduct`, data);
+  }
+
+  updateProduct(id: any, data: any): Observable<any> {
+    return this.httpClient.put(`${this.url}/product-api/updateproduct/${id}`, data);
+  }
+
+  deleteProduct(id: any): Observable<any> {
+    return this.httpClient.delete(`${this.url}/product-api/deleteproduct/${id}`);
+  }
+
+  sendOrders(OrdersData: any): Observable<any> {
+    console.log('this is order data from send order function', OrdersData);
+    return this.httpClient.post(`${this.url}/order-api/orders`, OrdersData);
+  }
+
+  ordersent(id: any): Observable<any> {
+    console.log('this is order data from send order function', id);
+    return this.httpClient.delete(`${this.url}/order-api/orders/${id}`);
+  }
+
+  getOrders(): Observable<any> {
+    return this.httpClient.get(`${this.url}/order-api/orders`);
+  }
+
+  searchText: any = '';
+  searchSubject = new Subject();
+
   getSearchString(searchText: any) {
     this.searchText = searchText;
     this.searchSubject.next(this.searchText);

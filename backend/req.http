@@ -8,9 +8,25 @@ post http://localhost:4000/user-api/registeruser
 Content-Type: application/json
 
 {
-    "username":"satyam",
+    "username":"satyam1",
     "password":"satyam",
-    "email":"satyam@gmail.com"
+    "email":"2309000satyam@gmail.com"
+}
+###
+post http://localhost:4000/user-api/verifyemail
+Content-Type: application/json
+
+{
+    "email":"2309000satyam@gmail.com",
+    "otp":"680480"
+}
+###
+post http://localhost:4000/user-api/resend
+Content-Type: application/json
+
+{
+    "email":"2309000satyam@gmail.com"
+    
 }
 ###
 post http://localhost:4000/user-api/login

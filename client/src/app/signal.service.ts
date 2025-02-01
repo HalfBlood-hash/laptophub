@@ -11,7 +11,8 @@ export class SignalService {
   loginstatus=signal(false)
   userloginType=signal('')
   loginUsername=signal('')
- 
+  
+  registerEmail=signal('')
 
   addtocartProduct=signal({})
 

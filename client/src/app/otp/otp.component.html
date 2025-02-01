@@ -1,0 +1,32 @@
+
+
+
+<div class="outer-div">
+    <div class="inner-div text-center">
+     <h3 class="mt-4">Otp verification</h3>
+        @if(otpStatus) {
+ 
+          <div class="errormessage mt-2">
+            <p class="fs-2 text-danger">{{otpStatusMessage}}</p>
+          </div>
+          }
+            <form [formGroup]="otpform" (ngSubmit)="onsubmit()">
+                <div class="form-group pl-3 pr-3  mt-4">
+                 
+                  <input type="number" class="form-control" id="otp" placeholder="Enter your otp" formControlName="otp">
+
+ 
+                </div>
+                
+               
+                  <button type="submit" class="btn btn-primary mb-3" >Submit</button>
+                  <div class="form-check mb-4 mr-sm-2 pl-3 pr-3">
+                    <a class="hover-thing" (click)="rediect()">Resend Otp</a>  
+                   
+                  </div>
+              </form>
+             
+       
+    </div>
+</div>
+ 
