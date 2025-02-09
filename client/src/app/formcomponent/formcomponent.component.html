@@ -1,0 +1,173 @@
+<div class="outer-div">
+    <div class="inner-div text-center">
+        @if(this.signalService.loginFormStatus())
+        {
+            
+            <span class="badge  mt-4"><h3>Login</h3></span>
+        }
+        @else if(this.signalService.otpFormstatus()){
+            <span class="badge  mt-4"><h3>Enter your otp</h3></span>
+        }
+        @else if(this.signalService.forgetPasswordFormStatus()){
+            <span class="badge  mt-4"><h3>Enter your email</h3></span>
+        }
+        @else if(this.signalService.verifyEmailStatus()){
+            <span class="badge  mt-4"><h3>Enter your code1</h3></span>
+        }
+        @else {
+
+            <span class="badge  mt-4"><h3>Register</h3></span>
+        }
+     
+        @if(this.signalService.isError()) {
+ 
+          <div class="errormessage mt-2">
+            <p class="fs-2 text-danger">{{ this.signalService.isErrorMessage() }}</p>
+          </div>
+          }
+          
+          
+          @if(this.signalService.loginFormStatus())
+          {
+              <form [formGroup]="loginform" >
+              
+                <div class="form-group p-2 pl-3 pr-3 ">
+                
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" formControlName="email">
+              </div>
+                <div class="form-group  p-2 pl-3 pr-3">
+                  <!-- <label for="password">Password</label> -->
+                  <input type="password" class="form-control " id="formGroupExampleInputpassword" placeholder="Password" formControlName="password">  
+              </div>
+              <div class="form-check mb-3 mr-sm-2 text-left ml-2 hover-thing " (click)="forgetPassword()">
+                Forget password
+            </div>
+                  <button type="submit" class="btn btn-primary mb-2"  (click)="loginFormSubmit()">Submit</button>
+                  <div class="form-check mb-2 mr-sm-2 pl-3 pr-3 hover-thing">
+                    <a class="hover-thing" (click)="redirectLogin()">Don't have account? register.</a>  
+                   
+                  </div>
+              </form> 
+          }
+          @else if(this.signalService.otpFormstatus())
+          {
+            <form [formGroup]="otpForm" >
+              
+                <div class="form-group p-2 pl-3 pr-3 ">
+                
+                  <input type="number" class="form-control" id="otp" placeholder="Enter your Otp" formControlName="otp">
+              </div>
+                  <button type="submit" class="btn btn-primary mb-2"  (click)="optFormSubmit()">Submit</button>
+                  <div class="form-check mb-2 mr-sm-2 pl-3 pr-3">
+                    <a class="hover-thing" >Already have account? login.</a>  
+                   
+                  </div>
+              </form> 
+          }
+          @else if(this.signalService.forgetPasswordFormStatus())
+          {
+            <form [formGroup]="forgetPasswordForm" >
+              
+                <div class="form-group p-2 pl-3 pr-3 ">
+                
+                  <input type="email" class="form-control" id="email" placeholder="Enter your Email" formControlName="email">
+              </div>
+                  <button type="submit" class="btn btn-primary mb-2"  (click)="forgetPasswordSubmit()">Submit</button>
+                  <!-- <div class="form-check mb-2 mr-sm-2 pl-3 pr-3">
+                    <a class="hover-thing" (click)="resendOpt()">Resend Otp</a>  
+                   
+                  </div> -->
+              </form> 
+          }
+          @else if(this.signalService.verifyEmailStatus())
+          {
+            <form [formGroup]="emailVerifyForm" >
+              
+                <div class="form-group p-2 pl-3 pr-3 ">
+                
+                  <input type="number" class="form-control" id="otp" placeholder="Enter your Otp" formControlName="otp">
+              </div>
+                  <button type="submit" class="btn btn-primary mb-2"  (click)="emailVerfySubmit()">Submit</button>
+                  <div class="form-check mb-2 mr-sm-2 pl-3 pr-3">
+                    <a class="hover-thing" (click)="resendOpt()">Resend Otp</a>  
+                   
+                  </div>
+              </form> 
+          }
+          @else if(this.signalService.newPassformStatus())
+          {
+            <form [formGroup]="newPasswordForm" >
+                
+                <div class="form-group  p-2 pl-3 pr-3">
+                  <!-- <label for="password">Password</label> -->
+                  <input type="password" class="form-control " id="formGroupExampleInputpassword" placeholder="Choose your password" formControlName="newpassword">
+               
+                @if(newpassword?.errors?.['required']&&(newpassword?.touched||newpassword?.dirty)){
+                  <div class="form-text text-danger">
+                    password is required
+                  </div>
+                }
+                <div class="form-text text-danger" *ngIf="newpassword?.errors?.['minlength']&&(newpassword?.touched||newpassword?.dirty)">
+                  min length is 4
+                </div>
+              </div>
+                <div class="form-group  p-2 pl-3 pr-3">
+                  <!-- <label for="password">Password</label> -->
+                  <input type="password" class="form-control " id="formGroupExampleInputpassword" placeholder="Confirm your password" formControlName="confirmPassword">
+              </div>
+                  <button type="submit" class="btn btn-primary mb-2" (click)="newPasswrdSubmit()">Submit</button>
+                  
+              </form>   
+          }
+        @else {
+
+            <form [formGroup]="registrationform" >
+              <div class="form-group pl-3 pr-3  mt-4">
+                <!-- <label for="username">Username</label> -->
+                <input type="text" class="form-control" id="username" placeholder="Choose your username" formControlName="username">
+             
+              <!-- @if(username?.errors?.['required']&&(username?.touched||username?.dirty)){ -->
+              <div class="form-text text-danger" *ngIf="username?.errors?.['required']&&(username?.touched||username?.dirty)">
+                username is required
+              </div>
+           
+              <div class="form-text text-danger" *ngIf="username?.errors?.['minlength']&&(username?.touched||username?.dirty)">
+                min length is 4
+              </div>
+    
+            </div>
+            
+              <div class="form-group p-2 pl-3 pr-3 ">
+              
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" formControlName="email">
+             
+              @if(email?.errors?.['email']&&(email?.touched||email?.dirty)){
+                <div class="form-text text-danger">
+                 invalid email
+                </div>
+              }
+            </div>
+              <div class="form-group  p-2 pl-3 pr-3">
+                <!-- <label for="password">Password</label> -->
+                <input type="password" class="form-control " id="formGroupExampleInputpassword" placeholder="Choose your password" formControlName="password">
+             
+              @if(password?.errors?.['required']&&(password?.touched||password?.dirty)){
+                <div class="form-text text-danger">
+                  password is required
+                </div>
+              }
+              <div class="form-text text-danger" *ngIf="password?.errors?.['minlength']&&(password?.touched||password?.dirty)">
+                min length is 4
+              </div>
+            </div>
+                <button type="submit" class="btn btn-primary mb-2" [disabled]="registrationform.invalid" (click)="registerFormSubmit()">Submit</button>
+                <div class="form-check mb-2 mr-sm-2 pl-3 pr-3">
+                  <a class="hover-thing" (click)="redirectFromRegister()">Already have account? login.</a>  
+                 
+                </div>
+            </form>   
+        }
+
+    </div>
+</div>
+ 

@@ -21,10 +21,10 @@ const registerNewseller = async (req, res) => {
 const login=async(req,res)=>{
     
     SESSION_KEY='abcde'
-    let userlist=await Seller.findOne({username:req.body.username})
+    let userlist=await Seller.findOne({email:req.body.email})
     if(userlist===null)
     {
-        res.send({message:"Invalid Username"})
+        res.send({success:false,message:"Invalid Username"})
     }
     else
     {
@@ -33,10 +33,10 @@ const login=async(req,res)=>{
         if(password)
         {
             let jwttoken=jwt.sign({username:req.body.username},SESSION_KEY,{expiresIn:'1d'})
-            res.send({message:'Login successful',token:jwttoken,user:userlist})
+            res.send({success:true,message:'Login successful',token:jwttoken,user:userlist})
         }
         else{
-            res.send({message:"Invalid password"})
+            res.send({success:false,message:"Invalid password"})
         }
     }
 }

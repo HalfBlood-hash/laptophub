@@ -1,11 +1,11 @@
 
 
-const {User}=require('../modal/usermodal')
+const {UserModal}=require('../modal/usermodal')
 
 
 async function verifyUser(req,res,next)
 {
-    let existedUser= await User.findOne({email:req.body.email})
+    let existedUser= await UserModal.findOne({email:req.body.email})
     if(existedUser===null)
     {
         next()

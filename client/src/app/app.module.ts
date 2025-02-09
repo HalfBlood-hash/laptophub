@@ -17,6 +17,8 @@ import { BillsComponent } from './bills/bills.component';
 import { SearchPipe } from './search.pipe';
 import { NgToastModule } from 'ng-angular-popup';
 import { OtpComponent } from './otp/otp.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { FormcomponentComponent } from './formcomponent/formcomponent.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { OtpComponent } from './otp/otp.component';
     BillsComponent,
     SearchPipe,
     OtpComponent,
+    ChangepasswordComponent,
+    FormcomponentComponent,
     
   ],
   imports: [

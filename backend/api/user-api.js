@@ -7,7 +7,7 @@ const userApp=exp.Router()
 
 const  expressErrorHandler=require('express-async-handler')
 const verifyUser=require('../middleware/verifyUser')
-const{getAllUser,registerNewUser,login,addtocart,deletetocart,cartview, verifyemail, resendOpt}=require('../controllers/usercontroller')
+const{getAllUser,registerNewUser,login,addtocart,deletetocart,cartview, verifyemail, sendOpt,resetPassword}=require('../controllers/usercontroller')
 
 
 userApp.get('/getuser',expressErrorHandler(getAllUser))
@@ -17,6 +17,6 @@ userApp.post('/verifyemail',expressErrorHandler(verifyemail))
 userApp.post('/login',expressErrorHandler(login))
 userApp.post('/addtocart/:username',expressErrorHandler(addtocart))
 userApp.post('/deletecart/:username',expressErrorHandler(deletetocart))
-userApp.post('/resend',expressErrorHandler(resendOpt))
-
+userApp.post('/sendotp',expressErrorHandler(sendOpt))
+userApp.post('/resetpassword',expressErrorHandler(resetPassword))
 module.exports=userApp

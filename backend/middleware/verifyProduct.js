@@ -1,11 +1,12 @@
 
 
-const {Product}=require('../db')
+
+const { ProductModal } = require('../modal/productmodal');
 
 
 async function verifyProduct(req,res,next)
 {
-    existedUser= await Product.findOne({pid:req.body.pid})
+    existedUser= await ProductModal.findOne({pid:req.body.pid})
     if(existedUser===null)
     {
         next()

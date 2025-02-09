@@ -20,9 +20,12 @@ export class ApiCallService {
   verifyEmail(code: any): Observable<any> {
     return this.httpClient.post(`${this.url}/user-api/verifyemail`, code);
   }
-  resendOtp(email:any):Observable<any>{
+  sendOtp(email:any):Observable<any>{
     console.log(email)
-    return this.httpClient.post(`${this.url}/user-api/resend`,{email:email})
+    return this.httpClient.post(`${this.url}/user-api/sendotp`,{email:email})
+  }
+  resetPassword(data:any):Observable<any>{
+    return this.httpClient.post(`${this.url}/user-api/resetpassword`,data);
   }
   userLogin(user: any): Observable<any> {
     return this.httpClient.post(`${this.url}/user-api/login`, user);

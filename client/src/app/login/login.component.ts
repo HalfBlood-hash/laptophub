@@ -28,7 +28,7 @@ export class LoginComponent {
   }
  
   Loginform=new FormGroup({
-    username:new FormControl('',[Validators.required]),
+    email:new FormControl('',[Validators.required]),
     password:new FormControl('',[Validators.required])
   })
  
@@ -46,7 +46,13 @@ export class LoginComponent {
     this.router.navigate(['/register'])
    
   }
- 
+ onReset()
+ {
+  
+  this.signal.resetPasswordStatus.set(true);
+  console.log(this.signal.resetPasswordStatus());
+  this.router.navigate(['/otpverification'])
+ }
   onSubmit()
   {
     console.log(this.Loginform.value)
@@ -91,13 +97,9 @@ export class LoginComponent {
         {
           next:(res)=>{
             console.log(res.message, this.Loginform.value)
-            if(res.message==='Login successful')
+            if(res.success)
             {
              
-              // let x=true
-              // localStorage.setItem('token',res.token)
-              // localStorage.setItem('name',res.user.username)
-              // localStorage.setItem('userType', this.radioValue)
               this.toast.success({
                 detail:'Login Success' ,
                 summary:'Successfull',

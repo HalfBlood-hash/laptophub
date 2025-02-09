@@ -61,16 +61,11 @@ export class RegisterComponent {
               this.signalService.registerEmail.set(this.registrationform.value.email)
               this.router.navigate(['otpverification'])
             }
-            else
-            {
-             
-              this.loginerrormessage=res.message
-             
-              this.loginerrorrsatuts=true
-            }
           },
           error:(err)=>{
-            console.log(err)
+            this.loginerrorrsatuts=true
+            this.loginerrormessage=err.error.message
+            console.log(err.error.message)
           }
         }
       )

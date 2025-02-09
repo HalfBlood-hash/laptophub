@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { ProductComponent } from './product/product.component';
 import { BillsComponent } from './bills/bills.component';
 import { OtpComponent } from './otp/otp.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { FormcomponentComponent } from './formcomponent/formcomponent.component';
 
 const routes: Routes = [
 
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'bills',component:BillsComponent},
   {path:'otpverification',component:OtpComponent},
+  {path:'form',component:FormcomponentComponent},
+  {path:'changepassword',component:ChangepasswordComponent},
   {path:'product/:id',component:ProductComponent},
   {path:'',redirectTo:'home',pathMatch:'full'},
 ];

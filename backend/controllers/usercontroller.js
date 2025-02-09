@@ -1,9 +1,10 @@
 const { Product } = require('../db');
 const {ProductModal}=require('../modal/productmodal')
 const { UserModal } = require('../modal/usermodal');
-const { sendEmailverification } = require('../middleware/emailVerification');
+const { sendEmailverification, welcomeEmailFuction } = require('../middleware/emailVerification');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { encryptPassword } = require('../middleware/passwordconvertor');
 
 //........................Get all users.................................
 const getAllUser = async (req, res) => {
@@ -45,20 +46,21 @@ const cartview = async (req, res) => {
 // ..........................................Login......................................................
 const login = async (req, res) => {
     const SESSION_KEY = 'abcde';
-    let userlist = await UserModal.findOne({ username: req.body.username });
+    let userlist = await UserModal.findOne({ email: req.body.email });
     if (userlist === null) {
-        res.send({ message: "Invalid Username" });
-    } else {
+        return res.status(400).json({success:false, message: "Invalid email" });
+    } 
+
         let password = await bcrypt.compare(req.body.password, userlist.password);
         console.log(password);
         if (password) {
             let jwttoken = jwt.sign({ username: req.body.username }, SESSION_KEY, { expiresIn: '1d' });
-            res.send({ message: 'Login successful', token: jwttoken, payload: userlist, user: userlist });
-        } else {
-            res.send({ message: "Invalid password" });
-        }
+            return res.status(200).json({ success:true ,message: 'Login successful', token: jwttoken, payload: userlist, user: userlist });
+        } 
+            return res.status(400).json({ success:false ,message: "Invalid password" });
+        
     }
-};
+
 
 // ..............................................Add to Cart................................................
 const addtocart = async (req, res) => {
@@ -83,7 +85,7 @@ const deletetocart = async (req, res) => {
     let result = await UserModal.findOneAndUpdate({ username: username }, { '$pull': { cart: { abc: data } } });
     res.send({ message: "Removed from cart", payload: result });
 };
-
+// ..............................Verify email..........................................
 const verifyemail = async (req, res) => {
     console.log(req.body);
     let user = await UserModal.findOne({ verificationCode: req.body.otp });
@@ -101,15 +103,17 @@ const verifyemail = async (req, res) => {
     }
     user.isverified = true;
     user.verificationCode = undefined;
-    await user.save();
+    let userlist =await user.save();
+    console.log(userlist);
+    welcomeEmailFuction(userlist.email,userlist.username)
     res.status(200).json({ success: true, message: "Verification successful" });
 };
-
-const resendOpt = async (req, res) => {
+// ...................send otp.............................................
+const sendOpt = async (req, res) => {
     let reqbody = req.body;
-    console.log(reqbody.email);
+    // console.log(reqbody.email);
     let user = await UserModal.findOne({ email: reqbody.email });
-    console.log(user);
+    // console.log(user);
     if (!user) {
         return res.status(400).json({ success: false, message: "Invalid email" });
     }
@@ -119,5 +123,17 @@ const resendOpt = async (req, res) => {
     sendEmailverification(user.email, user.verificationCode);
     res.status(200).json({ success: true, message: "New code is sent", payload: newcode.verificationCode });
 };
+// ****************reset password*****************************************
+const resetPassword=async(req,res)=>{
+    let user=await UserModal.findOne({email:req.body.email})
+    if(!user)
+        return res.status(400).json({success:false,message:"invalid email"})
 
-module.exports = { getAllUser, registerNewUser, login, addtocart, deletetocart, cartview, verifyemail, resendOpt };
+    let hashpassword=await encryptPassword(req.body.password)
+    user.password=hashpassword
+    await user.save();
+    res.status(200).json({success:true,message:"password is reset"})
+
+}
+
+module.exports = { getAllUser, registerNewUser, login, addtocart, deletetocart, cartview, verifyemail, sendOpt,resetPassword };

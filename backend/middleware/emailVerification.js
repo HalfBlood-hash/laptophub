@@ -21,10 +21,11 @@ const sendEmailverification=async(email,verificationCode)=>{
   }
    const welcomeEmailFuction=async(email,name)=>{
     try{
+      
         const info = await transporter.sendMail({
             from: '"laptophub 👻" <sanusatyam28@gmail.com>', // sender address
             to: email, // list of receivers
-            subject: "verification code", // Subject line
+            subject: "Welcome to laptophub!", // Subject line
             text: "email verifaication code", // plain text body
             html:Welcome_Email_Template.replace("{name}",name), // html body
           });

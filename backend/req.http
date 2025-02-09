@@ -18,14 +18,23 @@ Content-Type: application/json
 
 {
     "email":"2309000satyam@gmail.com",
-    "otp":"680480"
+    "otp":"628607"
 }
 ###
-post http://localhost:4000/user-api/resend
+post http://localhost:4000/user-api/sendotp
 Content-Type: application/json
 
 {
-    "email":"2309000satyam@gmail.com"
+    "email":"satyam@gmail.com"
+    
+}
+###
+post http://localhost:4000/user-api/resetpassword
+Content-Type: application/json
+
+{
+    "email":"satyam@gmail.com",
+    "password":"satyam1"
     
 }
 ###
@@ -33,8 +42,8 @@ post http://localhost:4000/user-api/login
 Content-Type: application/json
 
 {
-    "username":"satyam",
-    "password":"satam"
+    "email":"satyam@gmail.com",
+    "password":"satyam1"
    
 }
 ###
@@ -74,7 +83,7 @@ post http://localhost:4000/seller-api/login
 Content-Type: application/json
 
 {
-    "username":"satyam",
+    "email":"satyam@gmail.com",
     "password":"satyam"
    
 }

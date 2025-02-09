@@ -26,7 +26,7 @@
     <form [formGroup]="Loginform" (ngSubmit)="onSubmit()">
       <div class="form-group p-2 pl-3 pr-3 text-left mt-2">
         <!-- <label for="username">Username</label> -->
-        <input type="text" class="form-control" formControlName="username" id="username" placeholder="username" />
+        <input type="email" class="form-control" formControlName="email" id="email" placeholder="enater your email" />
       </div>
 
       <div class="form-group p-2 pl-3 pr-3">
@@ -35,14 +35,11 @@
           placeholder="password" />
       </div>
 
-      <!-- <div class="form-check mb-2 mr-sm-2 text-left ml-3">
-                      <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-                      <label class="form-check-label" for="inlineFormCheck">
-                        Remember me
-                      </label>
-                    </div> -->
+      <div class="form-check mb-3 mr-sm-2 text-left ml-2 hover-thing "(click)="onReset()">
+                        Forget password
+                    </div>
       <button type="submit" class="btn btn-primary mb-2">Submit</button>
-      <div class="form-check mb-2 mr-sm-2 pl-3 pr-3">
+      <div class="form-check mb-2 mr-sm-2 pl-3 pr-3 hover-thing">
         <a class="hover-thing" (click)="rediect()">Don't have account? register.</a> <br />
       </div>
     </form>
